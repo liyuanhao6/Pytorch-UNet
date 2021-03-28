@@ -10,7 +10,7 @@ from torchvision import transforms
 
 from unet import UNet
 from utils.data_vis import plot_img_and_mask
-from utils.dataset import BasicDataset
+from utils.dataset import CarvanaDataset
 
 
 def predict_img(net, full_img, device, scale_factor=1, out_threshold=0.5):
@@ -18,7 +18,7 @@ def predict_img(net, full_img, device, scale_factor=1, out_threshold=0.5):
     net.eval()
 
     # 将image数据转换成tensor
-    img = torch.from_numpy(BasicDataset.preprocess(full_img, scale_factor))
+    img = torch.from_numpy(CarvanaDataset.preprocess(full_img, scale_factor))
 
     # 插入第一维channel维度
     img = img.unsqueeze(0)

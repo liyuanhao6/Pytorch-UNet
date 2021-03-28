@@ -14,7 +14,7 @@ from eval import eval_net
 from unet import UNet
 
 from torch.utils.tensorboard import SummaryWriter
-from utils.dataset import BasicDataset
+from utils.dataset import CarvanaDataset
 from torch.utils.data import DataLoader, random_split
 
 dir_img = 'data/imgs/'
@@ -23,8 +23,8 @@ dir_checkpoint = 'checkpoints/'
 
 
 def train_net(net, device, epochs=5, batch_size=1, lr=0.001, val_percent=0.1, save_cp=True, img_scale=0.5):
-    # 载入父类数据集
-    dataset = BasicDataset(dir_img, dir_mask, img_scale)
+    # 载入数据集
+    dataset = CarvanaDataset(dir_img, dir_mask, img_scale)
     # 验证集长度
     n_val = int(len(dataset) * val_percent)
     # 训练集长度
